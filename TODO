@@ -1,0 +1,10 @@
+Tests:
+	- overloaded operations
+
+Type constraint library:
+	- Set
+	- MutableSet
+	- ImmutableSet
+	- Set[Num]
+	- MutableSet[Num]
+	- ImmutableSet[Num]
