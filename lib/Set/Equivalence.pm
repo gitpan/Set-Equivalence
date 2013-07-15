@@ -6,7 +6,7 @@ use warnings;
 
 BEGIN {
 	$Set::Equivalence::AUTHORITY = 'cpan:TOBYINK';
-	$Set::Equivalence::VERSION   = '0.000_01';
+	$Set::Equivalence::VERSION   = '0.000_02';
 }
 
 use Carp qw( croak );
@@ -163,7 +163,10 @@ sub member {
 	my $eq = $self->equivalence_relation;
 	my $tc = $self->type_constraint;
 	($tc->check($item) or return) if $tc;
-	return first { $eq->($_, $item) } $self->members;
+	for ($self->members) {
+		return $_ if $eq->($_, $item)
+	}
+	return;
 }
 
 sub members {
@@ -587,9 +590,9 @@ Returns the set cardinality (i.e. a count of the members).
 
 =item C<< member($member) >>
 
-Returns $member if it is a member of the set; returns false otherwise.
-(Of course, false values may be members of the set, so the C<contains>
-method documented below may be more useful.)
+Returns $member if it is a member of the set; returns undef otherwise.
+(Of course, undef may be a member of the set!) In list context, returns
+an empty list if the member is not a member of the set.
 
 Alias: C<element>.
 

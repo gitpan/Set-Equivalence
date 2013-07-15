@@ -44,5 +44,7 @@ t/30equivrel.t
 t/40objects.t
 t/41objects-stringlike.t
 t/50constraints.t
+t/60overload.t
+t/99todo.t
 TODO
 SIGNATURE                                Public-key signature (added by MakeMaker)
