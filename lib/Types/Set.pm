@@ -6,11 +6,11 @@ use warnings;
 
 BEGIN {
 	$Types::Set::AUTHORITY = 'cpan:TOBYINK';
-	$Types::Set::VERSION   = '0.000_03';
+	$Types::Set::VERSION   = '0.000_04';
 }
 
 use Set::Equivalence ();
-use Type::Tiny 0.015;
+use Type::Tiny 0.014;
 use Type::Library -base, -declare => qw(Set AnySet MutableSet ImmutableSet);
 use Types::Standard qw(ArrayRef InstanceOf HasMethods);
 use Type::Utils -all;
