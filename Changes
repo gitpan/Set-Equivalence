@@ -6,6 +6,14 @@ Home page:    <https://metacpan.org/release/Set-Equivalence>
 Bug tracker:  <http://rt.cpan.org/Dist/Display.html?Queue=Set-Equivalence>
 Maintainer:   Toby Inkster <mailto:tobyink@cpan.org>
 
+0.000_03  2013-07-15
+
+ - (Addition) Set::Equivalence objects can now apply type constraints and
+   coercions to their members.
+ - (Addition) Types::Set.
+ - Set::Equivalence uses Exporter::TypeTiny instead of Exporter.pm for
+   exporting.
+
 0.000_02  2013-07-15
 
  - (Bugfix) Fixed $set->member in list context.

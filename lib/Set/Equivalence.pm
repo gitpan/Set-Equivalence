@@ -6,7 +6,7 @@ use warnings;
 
 BEGIN {
 	$Set::Equivalence::AUTHORITY = 'cpan:TOBYINK';
-	$Set::Equivalence::VERSION   = '0.000_02';
+	$Set::Equivalence::VERSION   = '0.000_03';
 }
 
 use Carp qw( croak );
@@ -45,7 +45,6 @@ sub new {
 		equivalence_relation => $class->_build_equivalence_relation(\%args),
 		members              => [],
 		mutable              => true,
-		type_constraint      => undef,
 		%args,
 	} => $class;
 	
@@ -61,6 +60,11 @@ sub equivalence_relation {
 
 sub type_constraint {
 	shift->{type_constraint};
+}
+
+sub should_coerce {
+	my $self = shift;
+	$self->{coerce} and $self->{type_constraint} and $self->{type_constraint}->has_coercion
 }
 
 sub is_mutable {
@@ -107,10 +111,11 @@ sub insert {
 	
 	my $eq = $self->equivalence_relation;
 	my $tc = $self->type_constraint;
+	my $sc = $self->should_coerce;
 	
 	my $count;
 	ITEM: while (@_) {
-		my $item = shift @_;
+		my $item = $sc ? $tc->coerce(shift @_) : (shift @_);
 		$tc->check($item) || croak $tc->get_message($item) if $tc;
 		next ITEM if any { $eq->($_, $item) } $self->members;
 		push @{$self->{members}}, $item;
@@ -127,10 +132,11 @@ sub _unshift {
 	
 	my $eq = $self->equivalence_relation;
 	my $tc = $self->type_constraint;
+	my $sc = $self->should_coerce;
 	
 	my $count;
 	ITEM: while (@_) {
-		my $item = pop @_;
+		my $item = $sc ? $tc->coerce(pop @_) : (pop @_);
 		$tc->check($item) || croak $tc->get_message($item) if $tc;
 		next ITEM if any { $eq->($_, $item) } $self->members;
 		unshift @{$self->{members}}, $item;
@@ -144,13 +150,11 @@ sub contains {
 	my $self = shift;
 	
 	my $eq = $self->equivalence_relation;
-	my $tc = $self->type_constraint;
 	
 	return true unless @_;
 	
 	ITEM: while (@_) {
 		my $item = shift @_;
-		($tc->check($item) or return false) if $tc;
 		return false unless any { $eq->($_, $item) } $self->members;
 	}
 	
@@ -161,8 +165,6 @@ sub member {
 	my $self = shift;
 	my $item = $_[0];
 	my $eq = $self->equivalence_relation;
-	my $tc = $self->type_constraint;
-	($tc->check($item) or return) if $tc;
 	for ($self->members) {
 		return $_ if $eq->($_, $item)
 	}
@@ -362,11 +364,12 @@ sub is_empty { shift->is_null(@_) }
 
 # Exports
 BEGIN {
-	require Exporter;
-	push our(@ISA), 'Exporter';
-	push our(@EXPORT_OK), 'set';
+	require Exporter::TypeTiny;
+	push our(@ISA), 'Exporter::TypeTiny';
+	push our(@EXPORT_OK), 'set', 'typed_set';
 };
-sub set { __PACKAGE__->new(members => \@_) };
+sub set       {                 __PACKAGE__->new(members => \@_,                       ) };
+sub typed_set { my $tc = shift; __PACKAGE__->new(members => \@_, type_constraint => $tc) };
 
 # Extra fun
 sub as_array {
@@ -435,7 +438,7 @@ __END__
 
 =encoding utf-8
 
-=for stopwords user-configurable booleans supersets superset
+=for stopwords user-configurable booleans supersets superset invocant
 
 =head1 NAME
 
@@ -559,11 +562,20 @@ A type constraint for set members.
 Optional; accepts L<Type::Tiny> and L<MooseX::Types> type constraints
 (or indeed any object implementing L<Type::API::Constraint>).
 
+=item I<coerce>
+
+Boolean; whether type coercion should be attempted.
+Optional; defaults to false. Ignored unless the set has a type constraint
+which has coercions.
+
 =back
 
-=item C<< set(@members) >>
+=item C<< set(@members) >>, C<< typed_set($constraint, @members) >>
 
-Exportable function (i.e. not a method) that acts as a shortcut for C<new>.
+Exportable functions (i.e. not a method) that act as shortcuts for C<new>.
+
+Note that this module uses L<Exporter::TypeTiny>, which allows exported
+functions to be renamed.
 
 =item C<< clone >>
 
@@ -635,6 +647,10 @@ set.
 
 Alias: C<includes>, C<has>.
 
+=item C<< should_coerce >>
+
+Returns true iff this set will attempt type coercion of incoming members.
+
 =back
 
 =head2 Mutators
@@ -681,6 +697,10 @@ Throws an exception if the set is immutable.
 =item C<< make_immutable >>
 
 Converts the set to an immutable one.
+
+Returns the invocant, which means this method is suitable for chaining.
+
+   my $even_primes = set(2)->make_immutable;
 
 =item C<< weaken >>
 
@@ -852,6 +872,8 @@ Please report any bugs to
 L<http://rt.cpan.org/Dist/Display.html?Queue=Set-Equivalence>.
 
 =head1 SEE ALSO
+
+L<Types::Set>.
 
 L<Set::Object>, L<Set::Scalar>, L<Set::Tiny>.
 

@@ -5,6 +5,7 @@ Source: https://metacpan.org/release/Set-Equivalence
 
 Files: lib/Set/Equivalence.pm
  lib/Set/Equivalence/_Tie.pm
+ lib/Types/Set.pm
  t/01basic.t
  t/02constructors.t
  t/03accessors.t
@@ -18,7 +19,10 @@ Files: lib/Set/Equivalence.pm
  t/40objects.t
  t/41objects-stringlike.t
  t/50constraints.t
+ t/51coercions.t
  t/60overload.t
+ t/80types.t
+ t/81coercions.t
  t/99todo.t
 Copyright: This software is copyright (c) 2013 by Toby Inkster.
 License: GPL-1.0+ or Artistic-1.0
@@ -31,7 +35,6 @@ Files: CONTRIBUTING
  META.ttl
  Makefile.PL
  README
- TODO
  meta/changes.pret
  meta/doap.pret
  meta/makefile.pret
@@ -50,16 +53,8 @@ Files: inc/Module/Install/TrustMetaYml.pm
 Copyright: This software is copyright (c) 2011-2012 by Toby Inkster.
 License: GPL-1.0+ or Artistic-1.0
 
-Files: inc/Module/Install/Package.pm
-Copyright: Copyright (c) 2011. Ingy doet Net.
-License: GPL-1.0+ or Artistic-1.0
-
 Files: inc/Module/Install/Base.pm
 Copyright: Copyright 2003, 2004 by Audrey Tang <autrijus@autrijus.org>.
-License: GPL-1.0+ or Artistic-1.0
-
-Files: inc/Module/Install/Makefile.pm
-Copyright: Copyright 2002, 2003, 2004 Audrey Tang and Brian Ingerson.
 License: GPL-1.0+ or Artistic-1.0
 
 Files: COPYRIGHT
@@ -67,8 +62,16 @@ Copyright: None
 License: public-domain
 Comment: This file! Automatically generated.
 
+Files: inc/Module/Install/Package.pm
+Copyright: Copyright (c) 2011. Ingy doet Net.
+License: GPL-1.0+ or Artistic-1.0
+
 Files: inc/YAML/Tiny.pm
 Copyright: Copyright 2006 - 2012 Adam Kennedy.
+License: GPL-1.0+ or Artistic-1.0
+
+Files: inc/Module/Install/Makefile.pm
+Copyright: Copyright 2002, 2003, 2004 Audrey Tang and Brian Ingerson.
 License: GPL-1.0+ or Artistic-1.0
 
 License: Artistic-1.0

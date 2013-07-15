@@ -4,9 +4,9 @@ author:
   - 'Toby Inkster <tobyink@cpan.org>'
 build_requires:
   ExtUtils::MakeMaker: 6.59
-  Test::Fatal: 0
+  Test::Fatal: 0.010
   Test::More: 0.96
-  Test::Requires: 0
+  Test::Requires: 0.06
 configure_requires:
   ExtUtils::MakeMaker: 6.59
 distribution_type: module
@@ -24,9 +24,8 @@ no_index:
     - inc
     - t
     - xt
-recommends:
-  Type::Tiny: 0.014
 requires:
+  Exporter::TypeTiny: 0.014
   List::MoreUtils: 0.33
   perl: 5.8.0
 resources:
@@ -34,4 +33,4 @@ resources:
   homepage: https://metacpan.org/release/Set-Equivalence
   license: http://dev.perl.org/licenses/
   repository: https://github.com/tobyink/p5-set-equivalence
-version: 0.000_02
+version: 0.000_03

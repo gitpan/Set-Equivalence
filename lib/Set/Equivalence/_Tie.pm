@@ -2,7 +2,7 @@ package Set::Equivalence::_Tie;
 
 BEGIN {
 	$Set::Equivalence::_Tie::AUTHORITY = 'cpan:TOBYINK';
-	$Set::Equivalence::_Tie::VERSION   = '0.000_02';
+	$Set::Equivalence::_Tie::VERSION   = '0.000_03';
 }
 
 require Tie::Array;
@@ -15,7 +15,7 @@ sub TIEARRAY {
 
 sub FETCH {
 	my $set = ${+shift};
-	$set->{members}[$_[0]];
+	($set->members)[$_[0]];
 }
 
 sub FETCHSIZE {

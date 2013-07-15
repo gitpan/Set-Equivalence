@@ -85,9 +85,17 @@ DESCRIPTION
             and MooseX::Types type constraints (or indeed any object
             implementing Type::API::Constraint).
 
-    "set(@members)"
-        Exportable function (i.e. not a method) that acts as a shortcut for
+        *coerce*
+            Boolean; whether type coercion should be attempted. Optional;
+            defaults to false. Ignored unless the set has a type constraint
+            which has coercions.
+
+    "set(@members)", "typed_set($constraint, @members)"
+        Exportable functions (i.e. not a method) that act as shortcuts for
         "new".
+
+        Note that this module uses Exporter::TypeTiny, which allows exported
+        functions to be renamed.
 
     "clone"
         Returns a shallow clone of an existing set, with the same members
@@ -141,6 +149,10 @@ DESCRIPTION
 
         Alias: "includes", "has".
 
+    "should_coerce"
+        Returns true iff this set will attempt type coercion of incoming
+        members.
+
   Mutators
     Methods that alter the contents or behaviour of the set.
 
@@ -176,6 +188,11 @@ DESCRIPTION
 
     "make_immutable"
         Converts the set to an immutable one.
+
+        Returns the invocant, which means this method is suitable for
+        chaining.
+
+           my $even_primes = set(2)->make_immutable;
 
     "weaken"
         Unimplemented.
@@ -312,6 +329,8 @@ BUGS
     <http://rt.cpan.org/Dist/Display.html?Queue=Set-Equivalence>.
 
 SEE ALSO
+    Types::Set.
+
     Set::Object, Set::Scalar, Set::Tiny.
 
 AUTHOR

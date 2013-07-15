@@ -21,6 +21,7 @@ inc/Module/Package/Dist/RDF.pm
 inc/YAML/Tiny.pm
 lib/Set/Equivalence.pm
 lib/Set/Equivalence/_Tie.pm
+lib/Types/Set.pm
 LICENSE
 Makefile.PL
 MANIFEST			This list of files
@@ -44,7 +45,9 @@ t/30equivrel.t
 t/40objects.t
 t/41objects-stringlike.t
 t/50constraints.t
+t/51coercions.t
 t/60overload.t
+t/80types.t
+t/81coercions.t
 t/99todo.t
-TODO
 SIGNATURE                                Public-key signature (added by MakeMaker)

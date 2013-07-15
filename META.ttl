@@ -26,11 +26,11 @@ dist:project
 		nfo:fileName "lib/Set/Equivalence.pm";
 		nfo:programmingLanguage "Perl";
 	];
-	cpant:recommends  "Type::Tiny 0.014"^^cpant:dsWithVersion;
+	cpant:requires    "Exporter::TypeTiny 0.014"^^cpant:dsWithVersion;
 	cpant:requires    "List::MoreUtils 0.33"^^cpant:dsWithVersion;
-	cpant:test_requires "Test::Fatal"^^cpant:dsWithoutVersion;
+	cpant:test_requires "Test::Fatal 0.010"^^cpant:dsWithVersion;
 	cpant:test_requires "Test::More 0.96"^^cpant:dsWithVersion;
-	cpant:test_requires "Test::Requires"^^cpant:dsWithoutVersion;
+	cpant:test_requires "Test::Requires 0.06"^^cpant:dsWithVersion;
 	cpant:version_from [
 		a nfo:FileDataObject;
 		a nfo:SourceCode;
@@ -49,6 +49,7 @@ dist:project
 	doap:programming-language "Perl";
 	doap:release      dist:v_0-000_01;
 	doap:release      dist:v_0-000_02;
+	doap:release      dist:v_0-000_03;
 	doap:repository   [
 		a doap:GitRepository;
 		doap:browse <https://github.com/tobyink/p5-set-equivalence>;
@@ -83,6 +84,26 @@ dist:v_0-000_02
 	dcs:released-by   cpan:tobyink;
 	doap:file-release <http://backpan.cpan.org/authors/id/T/TO/TOBYINK/Set-Equivalence-0.000_02.tar.gz>;
 	doap:revision     "0.000_02"^^xsd:string.
+
+dist:v_0-000_03
+	a                 cpant:DeveloperRelease;
+	a                 doap:Version;
+	dc:identifier     "Set-Equivalence-0.000_03"^^xsd:string;
+	dc:issued         "2013-07-15"^^xsd:date;
+	dcs:changeset     [
+		dcs:item [
+			a dcs:Change;
+			rdfs:label "Set::Equivalence uses Exporter::TypeTiny instead of Exporter.pm for exporting.";
+		];
+		dcs:item [
+			a dcs:Addition;
+			rdfs:label "Set::Equivalence objects can now apply type constraints and coercions to their members.";
+		];
+		dcs:item [ a dcs:Addition; rdfs:label "Types::Set." ];
+	];
+	dcs:released-by   cpan:tobyink;
+	doap:file-release <http://backpan.cpan.org/authors/id/T/TO/TOBYINK/Set-Equivalence-0.000_03.tar.gz>;
+	doap:revision     "0.000_03"^^xsd:string.
 
 cpan:tobyink
 	a                 foaf:Person;
