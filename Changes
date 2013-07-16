@@ -6,6 +6,11 @@ Home page:    <https://metacpan.org/release/Set-Equivalence>
 Bug tracker:  <http://rt.cpan.org/Dist/Display.html?Queue=Set-Equivalence>
 Maintainer:   Toby Inkster <mailto:tobyink@cpan.org>
 
+0.001  2013-07-16
+
+ - (Documentation) Add Types::Set SYNOPSIS and DESCRIPTION.
+ - (Documentation) Include examples using Types::Set with Moo and Moose.
+
 0.000_05  2013-07-16
 
  - (Bugfix) Raise Type::Tiny dependency version number.

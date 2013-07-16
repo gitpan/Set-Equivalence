@@ -2,6 +2,8 @@ Changes
 CONTRIBUTING
 COPYRIGHT
 CREDITS
+examples/sets-and-moo.pl
+examples/sets-and-moose.pl
 inc/Module/AutoInstall.pm
 inc/Module/Install.pm
 inc/Module/Install/AutoInstall.pm

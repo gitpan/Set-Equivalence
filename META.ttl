@@ -52,6 +52,7 @@ dist:project
 	doap:release      dist:v_0-000_03;
 	doap:release      dist:v_0-000_04;
 	doap:release      dist:v_0-000_05;
+	doap:release      dist:v_0-001;
 	doap:repository   [
 		a doap:GitRepository;
 		doap:browse <https://github.com/tobyink/p5-set-equivalence>;
@@ -136,6 +137,24 @@ dist:v_0-000_05
 	dcs:released-by   cpan:tobyink;
 	doap:file-release <http://backpan.cpan.org/authors/id/T/TO/TOBYINK/Set-Equivalence-0.000_05.tar.gz>;
 	doap:revision     "0.000_05"^^xsd:string.
+
+dist:v_0-001
+	a                 doap:Version;
+	dc:identifier     "Set-Equivalence-0.001"^^xsd:string;
+	dc:issued         "2013-07-16"^^xsd:date;
+	dcs:changeset     [
+		dcs:item [
+			a dcs:Documentation;
+			rdfs:label "Add Types::Set SYNOPSIS and DESCRIPTION.";
+		];
+		dcs:item [
+			a dcs:Documentation;
+			rdfs:label "Include examples using Types::Set with Moo and Moose.";
+		];
+	];
+	dcs:released-by   cpan:tobyink;
+	doap:file-release <http://backpan.cpan.org/authors/id/T/TO/TOBYINK/Set-Equivalence-0.001.tar.gz>;
+	doap:revision     "0.001"^^xsd:string.
 
 cpan:tobyink
 	a                 foaf:Person;
