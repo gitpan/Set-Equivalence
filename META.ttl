@@ -26,8 +26,8 @@ dist:project
 		nfo:fileName "lib/Set/Equivalence.pm";
 		nfo:programmingLanguage "Perl";
 	];
-	cpant:requires    "Exporter::TypeTiny 0.014"^^cpant:dsWithVersion;
 	cpant:requires    "List::MoreUtils 0.33"^^cpant:dsWithVersion;
+	cpant:requires    "Type::Tiny 0.016"^^cpant:dsWithVersion;
 	cpant:test_requires "Test::Fatal 0.010"^^cpant:dsWithVersion;
 	cpant:test_requires "Test::More 0.96"^^cpant:dsWithVersion;
 	cpant:test_requires "Test::Requires 0.06"^^cpant:dsWithVersion;
@@ -51,6 +51,7 @@ dist:project
 	doap:release      dist:v_0-000_02;
 	doap:release      dist:v_0-000_03;
 	doap:release      dist:v_0-000_04;
+	doap:release      dist:v_0-000_05;
 	doap:repository   [
 		a doap:GitRepository;
 		doap:browse <https://github.com/tobyink/p5-set-equivalence>;
@@ -120,6 +121,21 @@ dist:v_0-000_04
 	dcs:released-by   cpan:tobyink;
 	doap:file-release <http://backpan.cpan.org/authors/id/T/TO/TOBYINK/Set-Equivalence-0.000_04.tar.gz>;
 	doap:revision     "0.000_04"^^xsd:string.
+
+dist:v_0-000_05
+	a                 cpant:DeveloperRelease;
+	a                 doap:Version;
+	dc:identifier     "Set-Equivalence-0.000_05"^^xsd:string;
+	dc:issued         "2013-07-16"^^xsd:date;
+	dcs:changeset     [
+		dcs:item [
+			a dcs:Bugfix;
+			rdfs:label "Raise Type::Tiny dependency version number.";
+		];
+	];
+	dcs:released-by   cpan:tobyink;
+	doap:file-release <http://backpan.cpan.org/authors/id/T/TO/TOBYINK/Set-Equivalence-0.000_05.tar.gz>;
+	doap:revision     "0.000_05"^^xsd:string.
 
 cpan:tobyink
 	a                 foaf:Person;

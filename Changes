@@ -6,6 +6,10 @@ Home page:    <https://metacpan.org/release/Set-Equivalence>
 Bug tracker:  <http://rt.cpan.org/Dist/Display.html?Queue=Set-Equivalence>
 Maintainer:   Toby Inkster <mailto:tobyink@cpan.org>
 
+0.000_05  2013-07-16
+
+ - (Bugfix) Raise Type::Tiny dependency version number.
+
 0.000_04  2013-07-15
 
  - (Bugfix) Lower Type::Tiny dependency version number.
