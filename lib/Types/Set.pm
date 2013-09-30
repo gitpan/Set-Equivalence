@@ -1,12 +1,12 @@
-package Types::Set;
-
 use 5.008;
 use strict;
 use warnings;
 
+package Types::Set;
+
 BEGIN {
 	$Types::Set::AUTHORITY = 'cpan:TOBYINK';
-	$Types::Set::VERSION   = '0.002';
+	$Types::Set::VERSION   = '0.003';
 }
 
 use Set::Equivalence ();

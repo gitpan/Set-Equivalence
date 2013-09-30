@@ -1,8 +1,12 @@
+use 5.008;
+use strict;
+use warnings;
+
 package Set::Equivalence::_Tie;
 
 BEGIN {
 	$Set::Equivalence::_Tie::AUTHORITY = 'cpan:TOBYINK';
-	$Set::Equivalence::_Tie::VERSION   = '0.002';
+	$Set::Equivalence::_Tie::VERSION   = '0.003';
 }
 
 require Tie::Array;
